@@ -45,7 +45,7 @@ class TestClass:
 
         # then
         assert resultado == esperado
-        
+
     @mark.calcular_bonus
     def test_quando_calcular_bonus_recebe_1000_deve_retornar_100(self):
         # given
@@ -58,17 +58,29 @@ class TestClass:
 
         # then
         assert resultado == esperado
-    
+
     @mark.calcular_bonus
     def test_quando_calcular_bonus_recebe_100000000_deve_retornar_exception(
             self):
         # given
         with pytest.raises(Exception):
-            entrada = 100000000  
-            
+            entrada = 100000000
+
             # when
             funconario_teste = Funcionario('teste', '11/11/2000', entrada)
-            resultado = funconario_teste.calcular_bonus()  
-            
+            resultado = funconario_teste.calcular_bonus()
+
             # then
-            assert resultado  
+            assert resultado
+
+    def test_retorno_str(self):
+        # given
+        nome, data_nascimento, salario = 'Teste', '12/04/1997', 1000
+        esperado = 'Funcionario(Teste, 12/04/1997, 1000)'
+
+        # when
+        funcionario_teste = Funcionario(nome, data_nascimento, salario)
+        resultado = funcionario_teste.__str__()
+
+        # then
+        assert resultado == esperado
